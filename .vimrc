@@ -133,7 +133,7 @@ function! SetMouse()
         echo "mouse on"
     endif
 endfunction
-map <C-k> :call SetMouse() <CR>
+map <C-m> :call SetMouse() <CR>
 
 " F5 快速运行代码
 map <F5> :call CompileRunGcc()<CR>
