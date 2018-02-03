@@ -11,10 +11,6 @@ au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 " Don't write backup file if vim is being called by "chpass"
 au BufWrite /private/etc/pw.* set nowritebackup nobackup
 
-if &compatible
-  set nocompatible
-end
-
 filetype off                  " required!  
   
 set rtp+=~/.vim/bundle/vundle/  
@@ -45,10 +41,18 @@ Bundle "altercation/vim-colors-solarized"
 Bundle "scrooloose/nerdtree"
 " 超级搜索
 Bundle 'kien/ctrlp.vim'
+" 补全括号和引号
+Bundle 'jiangmiao/auto-pairs'
+" 快速注释和取消注释
+Bundle 'scrooloose/nerdcommenter'
+" 按照pep8的标准自动格式化代码
+Bundle 'tell-k/vim-autopep8'
 " Git集成
 " Bundle 'tpope/vim-fugitive'
 " Powerline 状态栏
-" Bundle "Lokaltog/vim-powerline", {'rtp': 'powerline/bindings/vim/'}
+Bundle "Lokaltog/vim-powerline" 
+" 代码补全
+Bundle 'davidhalter/jedi-vim'
 
 " c) 指定非Github的Git仓库的插件，需要使用git地址  
 " Bundle 'git://git.wincent.com/command-t.git'  
@@ -58,7 +62,7 @@ Bundle 'kien/ctrlp.vim'
   
 filetype plugin indent on     " required! 
 
-" 布局
+
 set splitbelow
 set splitright
 
@@ -72,7 +76,7 @@ nnoremap <C-H> <C-W><C-H>
 set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
-
+" 启用SimpylFold
 let g:SimpylFold_docstring_preview=1
 
 " 支持PEP8风格的缩进。这些配置将让vim中的tab键相当于4个标准的空格符，确保每行代码长度不超过80个字符，并且
@@ -92,9 +96,6 @@ au BufNewFile,BufRead *.js,*.html,*.css
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
-
-" 标示不必要的空格（将多余的空白字符标示出来，很可能会将它们变成红色突出）
-" au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " 支持UTF-8编码
 set encoding=utf-8
@@ -144,12 +145,30 @@ func! CompileRunGcc()
     endif
 endfunc
 
-" 设置 powerline rtp为安装路径，这个要搞明白
-" powerline 安装具体见百度
-" set rtp+=/Users/LemonTree/anaconda3/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
-" set laststatus=2 
-" set t_Co=256
+" powerline设置
+set laststatus=2 
 
 " 设置NerdTree
 map <F3> :NERDTreeMirror<CR>
 map <F3> :NERDTreeToggle<CR>
+
+" 开启自动补全括号或引号
+let g:AutoPairsFlyMode = 1
+
+" 注释的时候自动加个空格, 强迫症必配
+let g:NERDSpaceDelims=1
+
+" 将leader键设置为"."
+let mapleader='.'
+
+" 注释快捷键，其中 leader 键是 .
+" <leader>cc   加注释
+" <leader>cu   解开注释
+" <leader>c<space>  加上/解开注释, 智能判断
+" <leader>cy   先复制, 再注解(p可以进行黏贴)
+
+" autopep8配置
+" 使用该插件前应先下载autopep8
+" pip install --upgrade autopep8
+let g:autopep8_disable_show_diff=1
+autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
