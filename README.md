@@ -6,6 +6,11 @@
 ```
     sudo apt install git
 ```
+#### 1.1.2 安装pip并安装autopep8（为插件vim-autopep8做准备）
+```
+    sudo apt install python-pip
+    pip install --upgrade autopep8
+```
 #### 1.1.2 安装vim（我所使用的Ubuntu没有vim）
 ```
     sudo apt install vim
@@ -31,7 +36,7 @@
 将会自动下载插件。下载完成后，按 q 键退出插件下载界面，按 :q 退出vim并重新进入 vim ，该配置文件即可配置完成
 ## 1.3 .vimrc 配置文件相关
 #### 1.3.1 该配置文件并没有配置代码补全功能，代码补全添加十分的麻烦，如果您想要代码补全功能的话，请自行搜索 YouCompleteMe
-#### 1.3.2 有关 powerline 的安装
+#### 1.3.2 有关 powerline 的安装(此项废除，请不要按此项安装)
 ###### 1.3.2.1 安装 python2
 ```
     sudo apt install python-minimal
@@ -73,5 +78,10 @@
 通过快捷键``` F5 ```来一键运行 python
 #### 2.1.6 文件搜索
 使用快捷键``` Ctrl + p ```进行文件搜索，回车打开文件，快捷键``` esc ```退出文件搜索
+#### 2.1.7 快速注释
+使用快捷键``` . + cc ```对选中行快速注释（可使用``` Shift + v ```选中多行后再进行注释）,
+使用快捷键``` . + cu ```取消注释，使用快捷键``` . + cy ```先复制，再注释（使用快捷键p来粘贴）
+#### 2.1.8 一键格式化代码（pep8风格）
+使用快捷键``` <F8> ```来一键格式化代码
 
 
